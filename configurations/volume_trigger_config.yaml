@@ -1,0 +1,20 @@
+# braid volume trigger configuration
+
+topic: "braid_trigger_topic"
+
+xmin: -0.3
+xmax: 0.3
+ymin: -0.2
+ymax: 0.2
+zmin: 0.1
+zmax: 0.4
+
+vel_xmin: -10000
+vel_xmax: 10000
+vel_ymin: -10000
+vel_ymax: 10000
+vel_zmin: -10000
+vel_zmax: 10000
+
+refractory_time: 1 # seconds
+min_trajec_length: 0.1 # seconds

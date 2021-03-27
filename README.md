@@ -18,4 +18,11 @@ Runing the trigger. An example volumetric trigger is given in braid_trigger_in_v
 
 # Analysis Code
 
-Run `python ./setup.py install` to install the analysis package.
+Run `python ./setup.py install` to install the analysis package. The analysis package contains three modules:
+* braid_filemanager.py ----- for loading braidz files
+* braid_slicing.py --------- for slicing pandas dataframes in generically useful ways
+* braid_analysis_plots.py -- for generic analyses and plots
+
+### Notebooks
+
+This directory contains some example analyses that may be useful. 

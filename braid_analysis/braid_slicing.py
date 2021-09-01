@@ -15,9 +15,14 @@ def get_long_obj_ids_fast_pandas(df_3d, length=30):
     obj_ids  ------- (list) of object id numbers
 
     '''
-    number_frames_per_obj_id = df_3d[["frame", "obj_id"]].groupby(by=["obj_id"]).agg(["count"])
-    obj_ids = number_frames_per_obj_id[  number_frames_per_obj_id[('frame', 'count')]  >  length  ].index.values
-    return obj_ids
+    try:
+        number_frames_per_obj_id = df_3d[["frame", "obj_id"]].groupby(by=["obj_id"]).agg(["count"])
+        obj_ids = number_frames_per_obj_id[  number_frames_per_obj_id[('frame', 'count')]  >  length  ].index.values
+        return obj_ids
+    except:
+        number_frames_per_obj_id = df_3d[["frames", "objid"]].groupby(by=["objid"]).agg(["count"])
+        obj_ids = number_frames_per_obj_id[  number_frames_per_obj_id[('frames', 'count')]  >  length  ].index.values
+        return obj_ids
 
 def get_middle_of_tunnel_obj_ids_fast_pandas(df_3d, zmin=0.1, zmax=0.4, ymin=-0.15, ymax=0.15, xmin=-0.5, xmax=0.5):
     '''

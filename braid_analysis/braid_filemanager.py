@@ -1,6 +1,13 @@
 import sys
 import zipfile
-import urllib.request # requires Python 3
+
+try:
+    import urllib.request # requires Python 3
+    urlparse = urllib.parse.urlparse
+except:
+    import urllib2 as urllib
+    print('Load braidz files using python 3!!')
+
 import io
 import pandas as pd
 
@@ -13,7 +20,7 @@ def open_filename_or_url(filename_or_url):
     filename_or_url -- (str) filename
 
     '''
-    parsed = urllib.parse.urlparse(filename_or_url)
+    parsed = urlparse(filename_or_url)
     is_windows_drive = len(parsed.scheme) == 1
     if is_windows_drive or parsed.scheme=='':
         # no scheme, so this is a filename.
@@ -21,7 +28,7 @@ def open_filename_or_url(filename_or_url):
     else:
         # Idea for one day: implement HTTP file object reader that implements
         # seek using HTTP range requests.
-        fileobj = urllib.request.urlopen(filename_or_url)
+        fileobj = url_request.urlopen(filename_or_url)
         fileobj_with_seek = io.BytesIO(fileobj.read())
     return fileobj_with_seek
 
